@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApplication1.Models.Discussion>
+
+@{
+    ViewData["Title"] = "Discussion";
+}
+<header>
+    <div class="header">
+        <div class="header_title">  
+            What2Eat
+        </div>
+    </div>
+    <div class="top_nav">
+        <a asp-area="" asp-controller="Home" asp-action="Home">Home</a>
+        <a class="active" asp-area="" asp-controller="Home" asp-action="Discussion">Discussion</a>
+    </div>
+</header>
+
+<body>
+   <div class="flex-container_discussion">
+        <div class="flex-child_discussion">
+            <table class="review_table">
+                <tr>
+                    <td class="indi_row">                
+                        <table>
+                            @foreach (var review in Model) {
+                                @if(review == null)
+                                {
+                                   <tr>
+                                       <td>
+                                           <div style="text-align:center;">
+                                               No Reviews Yet!
+                                           </div>
+                                       </td>
+                                   </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td >
+                                            <div class="indi_review">
+                                                @review.Review
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }                                
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="flex-container_discussion">
+        <div class="flex-child_discussion">
+            <table class="write_review_table">
+                <tr>
+                    <td>
+                        @using (Html.BeginForm("Authorize_review","Discussion",FormMethod.Post)){
+                        <input type="text" placeholder="Write Your Own Review Here" name="Review" required>
+                        <input class="btn_review" type="submit" name="add_review" value="Add Review">
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <div class="footer">
+        <div class="footer_title">  
+            <h2>What2Eat</h2>
+            Bachelor of Computer Science<br>
+            An Object Oriented Programming Project,Session of 2022/23
+        </div>
+    </div>
+</footer>

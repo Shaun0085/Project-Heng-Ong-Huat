@@ -1,0 +1,64 @@
+﻿@model WebApplication1.Models.User
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<body class="bg_img">
+    <div class="title">
+        What2Eat
+    </div>
+
+    @if (TempData["success_message"] != null){
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+              @TempData["success_message"]
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+    }
+
+        @if (TempData["incorrect_details"] != null){
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+              @TempData["incorrect_details"]
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+    }
+
+    <div class="container_box">
+        <div class="box_card">
+            <h2>Login</h2>
+            <p>Not yet a member? <a asp-area="" asp-controller="Home" asp-action="SignUp">SignUp</a></p>
+            @using (Html.BeginForm("Authorize_login","Login",FormMethod.Post)){
+                <div class="input-icons">
+                    <i class="fa fa-envelope icon"></i>
+                </div>
+                <input type="text" placeholder="Email" class="input_email" name="Email" required>
+
+                <div class="input-icons">
+                    <i class="fa fa-key icon"></i>
+                </div>
+                <input type="password" id="LoginPassword" placeholder="Password" class="input_password" name="Password" required>
+
+                <div class="display_password"><input type="checkbox" onclick="displayPassword()">Show Password<br/></div>
+
+                <input class="btn" type="submit" name="login" value="login" />
+            }
+        </div>
+    </div>
+</body>
+
+@section Scripts{
+<!--Display Password JS-->
+<script>
+    function displayPassword() {
+    var x = document.getElementById("LoginPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+</script>
+}

@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<body class="bg_img">
+    <div class="title">
+        What2Eat
+    </div>
+
+    <div class="container_box">
+        <div class="box_card">
+            <h2>Sign up</h2>
+            <p>Already a member? <a asp-area="" asp-controller="Home" asp-action="SignIn">SignIn</a></p>
+            @using (Html.BeginForm("Authorize_signup","SignUp",FormMethod.Post)){
+            <div class="signUp_username">
+                <span class="input-icons-signUp">
+                    <i class="fa fa-user icon-signUp-firstName"></i>
+                </span>
+                <input type="text" placeholder="First Name" class="input_firstName" name="FirstName" required>
+                <span class="input-icons-signUp">
+                    <i class="fa fa-user icon-signUp-lastName"></i>
+                </span>
+                <input type="text" placeholder="Last Name" class="input_lastName" name="LastName" required>
+            </div>
+            <div class="input-icons">
+                <i class="fa fa-envelope icon"></i>
+            </div>
+            <input type="text" placeholder="Email" class="input_email" name="Email" required>
+
+            <div class="input-icons">
+                <i class="fa fa-key icon"></i>
+            </div>
+            <input type="password" id="SignUpPassword" placeholder="Password" class="input_password" name="Password" required>
+
+            <div class="display_password"><input type="checkbox" onclick="displayPassword()">Show Password</div>
+            
+            <input class="btn" type="submit" name="signup" value="signup">
+            }
+        </div>
+    </div>
+</body>
+
+@section Scripts{
+<!--Display Password JS-->
+    <script>
+        function displayPassword() {
+        var x = document.getElementById("SignUpPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+}
+
+
